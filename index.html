@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stashdell | Quality Buckets & Supplies</title>
+    <title>Stashsell | Quality Buckets & Supplies</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DTPGZ964FD"></script>
     <!-- 🔗 Favicon -->
-<link rel="icon" type="image/jpg" href="images/stashdell-logo.jpg">
-<link rel="apple-touch-icon" href="images/stashdell-logo.jpg">
+<link rel="icon" type="image/jpg" href="images/stashsell-logo.jpg">
+<link rel="apple-touch-icon" href="images/stashsell-logo.jpg">
     <style>
         :root {
             --primary-green: #4CAF50;
@@ -1472,9 +1472,9 @@
         </button>
         
         <div class="logo">
-            <img src="images/stashdell-logo.jpg" alt="Stashdell Logo">
+            <img src="images/stashsell-logo.jpg" alt="Stashsell Logo">
             <div class="logo-text">
-                <h1>STASHDELL</h1>
+                <h1>STASHSELL</h1>
                 <p>Quality Buckets & Supplies</p>
             </div>
         </div>
@@ -1549,9 +1549,9 @@
                         <i class="fab fa-whatsapp"></i>
                         <span>WhatsApp Support</span>
                     </a>
-                    <a href="mailto:info@stashdell.co.za">
+                    <a href="mailto:info@stashsell.co.za">
                         <i class="fas fa-envelope"></i>
-                        <span>info@stashdell.co.za</span>
+                        <span>info@stashsell.co.za</span>
                     </a>
                 </div>
             </div>
@@ -1561,7 +1561,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h2>Welcome to <span>Stashdell</span></h2>
+            <h2>Welcome to <span>Stashsell</span></h2>
             <p>Your trusted source for quality buckets, boiler buckets, and supplies<br>Perfect for home, business, and industrial use</p>
         </div>
     </section>
@@ -1570,7 +1570,7 @@
     <div class="container">
         <!-- About Section -->
         <section class="about" id="about">
-            <h3>About Stashdell</h3>
+            <h3>About Stashsell</h3>
             <p>We provide high-quality buckets and supplies at competitive prices. From standard buckets to specialized boiler buckets, we have everything you need for your storage and industrial requirements.</p>
             
             <div class="about-grid">
@@ -1668,7 +1668,7 @@
                 
                 <div class="modal-business">
                     <img src="" alt="" class="modal-business-logo" id="modalBusinessLogo">
-                    <span class="modal-business-name" id="modalBusinessName">Stashdell</span>
+                    <span class="modal-business-name" id="modalBusinessName">Stashsell</span>
                 </div>
             </div>
         </div>
@@ -1709,7 +1709,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h4>STASHDELL</h4>
+                <h4>STASHSELL</h4>
                 <p>Quality Buckets & Supplies<br>Perfect for home, business, and industrial use</p>
             </div>
             <div class="footer-section">
@@ -1727,7 +1727,7 @@
                 </div>
                 <div class="contact-info">
                     <i class="fas fa-envelope"></i>
-                    <span>info@stashdell.co.za</span>
+                    <span>info@stashsell.co.za</span>
                 </div>
                 <div class="contact-info">
                     <i class="fas fa-map-marker-alt"></i>
@@ -1742,7 +1742,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Stashdell. All rights reserved.</p>
+            <p>&copy; 2026 Stashsell. All rights reserved.</p>
         </div>
     </footer>
 
@@ -1926,7 +1926,7 @@
                     return;
                 }
 
-                let message = 'Hi! I would like to place an order with Stashdell:\n\n';
+                let message = 'Hi! I would like to place an order with Stashsell:\n\n';
                 this.items.forEach(item => {
                     message += `• ${item.name} x${item.quantity} - R${(item.price * item.quantity).toFixed(2)}\n`;
                 });
@@ -1951,7 +1951,7 @@
 
         // ===== MODAL FUNCTIONS =====
         function openProductModal(productId) {
-            const product = window.STASHDELL_PRODUCTS?.find(p => p.id === productId);
+            const product = window.STASHSELL_PRODUCTS?.find(p => p.id === productId);
             if (!product) return;
 
             currentModalProduct = product;
@@ -1963,8 +1963,8 @@
             document.getElementById('modalPrice').textContent = `R${product.price.toFixed(2)}`;
             document.getElementById('modalDescription').textContent = product.description;
             document.getElementById('modalQty').textContent = modalQty;
-            document.getElementById('modalBusinessName').textContent = product.businessName || 'Stashdell';
-            document.getElementById('modalBusinessLogo').src = product.businessLogo || 'images/stashdell-logo.jpg';
+            document.getElementById('modalBusinessName').textContent = product.businessName || 'Stashsell';
+            document.getElementById('modalBusinessLogo').src = product.businessLogo || 'images/stashsell-logo.jpg';
             
             const badgeEl = document.getElementById('modalBadge');
             if (product.badge) {
@@ -2005,7 +2005,7 @@
 
         // ===== PRODUCT RENDERING =====
         function renderProducts() {
-            const products = window.STASHDELL_PRODUCTS || [];
+            const products = window.STASHSELL_PRODUCTS || [];
             
             const boilerBucketsGrid = document.getElementById('boiler-buckets-grid');
             const standardBucketsGrid = document.getElementById('standard-buckets-grid');
@@ -2061,7 +2061,7 @@
             cart.updateCart();
             
             // Load products if available
-            if (window.STASHDELL_PRODUCTS) {
+            if (window.STASHSELL_PRODUCTS) {
                 renderProducts();
             }
             

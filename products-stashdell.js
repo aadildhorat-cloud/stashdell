@@ -206,7 +206,7 @@ window.StashsellProducts = {
             </div>
         </article>
     `,
-    getWhatsAppLink: (product, phoneNumber = "27123456789") => {
+    getWhatsAppLink: (product, phoneNumber = "27676567587") => {
         const msg = encodeURIComponent(
             `Hi! I'd like to order from Stashsell:\n\n` +
             `🪣 *${product.name}*\n` +
