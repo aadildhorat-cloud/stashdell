@@ -8,10 +8,10 @@
 // 📌 ASSET CONFIGURATION
 const CONFIG = {
     basePath: "",
-    imageDir: "/stashsell/images",
-    fallbackImage: "/stashsell/images/stashsell-logo.jpg",
+    imageDir: "/stashdell/images",
+    fallbackImage: "/stashdell/images/stashdell-logo.jpg",
     businessName: "Stashsell",
-    businessLogo: "/stashsell/images/stashsell-logo.jpg",
+    businessLogo: "/stashdell/images/stashdell-logo.jpg",
     // Helper to resolve image paths (handles both absolute URLs and relative paths)
     resolveImage: (src) => {
         if (!src) return CONFIG.fallbackImage;
@@ -45,7 +45,7 @@ const RAW_PRODUCTS = [
         description: "Durable 10-liter boiler bucket perfect for industrial and commercial use", 
         badge: "💚 Popular",
         businessName: "Stashsell", 
-        businessLogo: "/stashsell/images/stashsell-logo.jpg", 
+        businessLogo: "/stashdell/images/stashdell-logo.jpg", 
         image: "images/10l-boiler-bucket.jpg" 
     },
     { 
@@ -86,7 +86,7 @@ const RAW_PRODUCTS = [
         description: "Versatile 5-liter standard bucket for everyday household use", 
         badge: "💰 Budget Friendly", 
         businessName: "Stashsell", 
-        businessLogo: "/stashsell/images/stashsell-logo.jpg", 
+        businessLogo: "/stashsell/images/stashdell-logo.jpg", 
         image: "images/5l-standard-bucket.jpg" 
     },
     { 
