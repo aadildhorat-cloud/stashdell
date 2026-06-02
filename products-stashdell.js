@@ -129,6 +129,19 @@ const RAW_PRODUCTS = [
         businessName: "Stashsell", 
         businessLogo: "/stashsell/images/stashsell-logo.jpg", 
         image: "images/white-folding-chair.jpg" 
+    },
+     { 
+        id: "black-urban-chair", 
+        name: "Black Urban Chair", 
+        price: 38.00, 
+        category: "furniture", 
+        niche: "furniture", 
+        location: "south-africa", 
+        description: "Sturdy black urban chair, perfect for events and extra seating", 
+        badge: "🎯 Special", 
+        businessName: "Stashsell", 
+        businessLogo: "/stashsell/images/stashsell-logo.jpg", 
+        image: "images/blackurbanchair.jpg" 
     }
 ];
 
