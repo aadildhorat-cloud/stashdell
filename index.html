@@ -1758,6 +1758,7 @@
       /* Keep subtext on mobile but ensure it fits */
     }
   }
+  
 </style>
 
 <!-- The Link -->
@@ -1785,10 +1786,6 @@
     </div>
 </header>
 
-<!-- Wholesale Banner -->
-<div class="wholesale-banner">
-    <i class="fas fa-info-circle"></i> <strong>Wholesale Only:</strong> Minimum Order Quantity (MOQ) 10 pieces per product. No retail sales.
-</div>
 
     <!-- Advanced Hamburger Menu Overlay -->
     <div class="menu-overlay" id="menuOverlay">
@@ -1876,9 +1873,7 @@
             <h3>About Stashsell</h3>
             <p>We provide high-quality buckets and supplies at competitive prices. From standard buckets to specialized boiler buckets, we have everything you need for your storage and industrial requirements.</p>
             
-            <div class="moq-notice">
-                <i class="fas fa-boxes"></i> <strong>Wholesale Only:</strong> Minimum Order Quantity (MOQ) of <strong>10 pieces</strong> per product. We do not sell retail.
-            </div>
+         
             
             <div class="about-grid">
                 <div class="about-card">
@@ -2060,7 +2055,7 @@
     </footer>
 
     <!-- Include Products Script -->
-    <script src="products-stashdell.js"></script>
+    <script src="/stashdell/products-stashdell.js"></script>
 
     <!-- Cart & Modal Functionality -->
     <script>
@@ -2419,5 +2414,20 @@
             });
         });
     </script>
+    <!-- Before closing </body> -->
+<script src="/stashsell/products-stashdell.js"></script>
+<script>
+  // Render Stashsell products on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('#boiler-buckets, #standard-buckets, #furniture');
+    if (container && window.StashsellProducts) {
+      const products = StashsellProducts.getAll()
+        .filter(p => p.businessName === 'Stashsell');
+      container.innerHTML = products.map(p => 
+        StashsellProducts.renderStashsellCard(p)
+      ).join('');
+    }
+  });
+</script>
 </body>
 </html>

@@ -142,7 +142,20 @@ const RAW_PRODUCTS = [
         businessName: "Stashsell", 
         businessLogo: "/stashsell/images/stashsell-logo.jpg", 
         image: "images/blackurbanchair.jpg" 
-    }
+    },
+      { 
+        id: "uslite-electric-stove", 
+        name: "UsLite Electric Stove", 
+        price: 110.00, 
+        category: "furniture", 
+        niche: "furniture", 
+        location: "south-africa", 
+        description: "2000W electric stove, perfect for cooking and heating needs", 
+        badge: "🎯 Special", 
+        businessName: "Stashsell", 
+        businessLogo: "/stashsell/images/stashsell-logo.jpg", 
+        image: "images/uslite-electric-stove.jpg" 
+    },
 ];
 
 // 🔄 Process & Attach Metadata
