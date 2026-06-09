@@ -1,7 +1,7 @@
 /**
 ? Stashsell - Auto-generated Product Data
 ?? DO NOT EDIT MANUALLY - Synced from Google Sheets via Apps Script
-? Generated: 2026-06-09T08:12:44.849Z
+? Generated: 2026-06-09T08:17:45.027Z
 ? Products: 9
 ? Repo: aadildhorat-cloud/stashdell
 */
