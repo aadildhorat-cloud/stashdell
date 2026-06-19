@@ -145,9 +145,11 @@ function fetchProducts() {
         
         isLoading = true;
         
-        // Load as dynamic script (since Apps Script serves JS format)
-        const script = document.createElement("script");
-        script.src = CONFIG.SHEETS_API_URL;
+    
+            // Load as dynamic script (since Apps Script serves JS format)
+    const script = document.createElement("script");
+    // 📱 FIX: Add timestamp to prevent mobile browsers from caching old data
+    script.src = CONFIG.SHEETS_API_URL + (CONFIG.SHEETS_API_URL.includes('?') ? '&' : '?') + 't=' + Date.now();
           script.onload = function() {
         console.log("✅ Products loaded from Google Sheets");
         isLoading = false;
@@ -172,31 +174,37 @@ function fetchProducts() {
 
 // 🔄 Process raw product data
 function processProducts(rawProducts) {
-    PRODUCTS = rawProducts.map(function(product) {
-        const resolvedImage = CONFIG.resolveImage(product.image);
-        return {
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            category: product.category,
-            niche: product.niche,
-            location: product.location,
-            description: product.description,
-            badge: product.badge,
-            image: resolvedImage,
-            imageFallback: CONFIG.fallbackImage,
-            businessName: product.businessName || CONFIG.businessName,
-            businessLogo: CONFIG.businessLogo,
-            categorySlug: (product.category || "").trim().toLowerCase(),
-            nicheSlug: (product.niche || "general").trim().toLowerCase(),
-            locationSlug: (product.location || "south-africa").trim().toLowerCase()
-        };
-    });
-    
-    window.STASHSELL_PRODUCTS = PRODUCTS;
-    window.STASHSELL_DATA = PRODUCTS;
-    
-    return PRODUCTS;
+PRODUCTS = rawProducts.map(function(product) {
+const resolvedImage = CONFIG.resolveImage(product.image);
+
+// 🖼️ FIX: Resolve popup images URLs
+const resolvedPopupImages = (product.popupImages || []).map(function(img) {
+    return CONFIG.resolveImage(img);
+});
+
+return {
+id: product.id,
+name: product.name,
+price: product.price,
+category: product.category,
+niche: product.niche,
+location: product.location,
+description: product.description,
+badge: product.badge,
+image: resolvedImage,
+popupImages: resolvedPopupImages, // ✅ ADDED: Passes gallery to HTML
+imageFallback: CONFIG.fallbackImage,
+businessName: product.businessName || CONFIG.businessName,
+businessLogo: CONFIG.businessLogo,
+categorySlug: (product.category || "").trim().toLowerCase(),
+nicheSlug: (product.niche || "general").trim().toLowerCase(),
+locationSlug: (product.location || "south-africa").trim().toLowerCase()
+};
+});
+window.STASHSELL_PRODUCTS = PRODUCTS;
+window.STASHSELL_DATA = PRODUCTS;
+
+return PRODUCTS;
 }
 
 // 🛠️ Utility API - Available globally
