@@ -145,9 +145,11 @@ function fetchProducts() {
         
         isLoading = true;
         
-        // Load as dynamic script (since Apps Script serves JS format)
-        const script = document.createElement("script");
-        script.src = CONFIG.SHEETS_API_URL;
+    
+            // Load as dynamic script (since Apps Script serves JS format)
+    const script = document.createElement("script");
+    // 📱 FIX: Add timestamp to prevent mobile browsers from caching old data
+    script.src = CONFIG.SHEETS_API_URL + (CONFIG.SHEETS_API_URL.includes('?') ? '&' : '?') + 't=' + Date.now();
           script.onload = function() {
         console.log("✅ Products loaded from Google Sheets");
         isLoading = false;
@@ -172,31 +174,39 @@ function fetchProducts() {
 
 // 🔄 Process raw product data
 function processProducts(rawProducts) {
-    PRODUCTS = rawProducts.map(function(product) {
-        const resolvedImage = CONFIG.resolveImage(product.image);
-        return {
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            category: product.category,
-            niche: product.niche,
-            location: product.location,
-            description: product.description,
-            badge: product.badge,
-            image: resolvedImage,
-            imageFallback: CONFIG.fallbackImage,
-            businessName: product.businessName || CONFIG.businessName,
-            businessLogo: CONFIG.businessLogo,
-            categorySlug: (product.category || "").trim().toLowerCase(),
-            nicheSlug: (product.niche || "general").trim().toLowerCase(),
-            locationSlug: (product.location || "south-africa").trim().toLowerCase()
-        };
-    });
-    
-    window.STASHSELL_PRODUCTS = PRODUCTS;
-    window.STASHSELL_DATA = PRODUCTS;
-    
-    return PRODUCTS;
+PRODUCTS = rawProducts.map(function(product) {
+const resolvedImage = CONFIG.resolveImage(product.image);
+
+// 🖼️ FIX: Resolve popup images URLs
+const resolvedPopupImages = (product.popupImages || []).map(function(img) {
+    return CONFIG.resolveImage(img);
+});
+
+return {
+id: product.id,
+name: product.name,
+price: product.price,
+category: product.category,
+niche: product.niche,
+location: product.location,
+description: product.description,
+badge: product.badge,
+image: resolvedImage,
+popupImages: resolvedPopupImages, // ✅ ADDED: Passes gallery to HTML
+imageFallback: CONFIG.fallbackImage,
+businessName: product.businessName || CONFIG.businessName,
+businessLogo: CONFIG.businessLogo,
+categorySlug: (product.category || "").trim().toLowerCase(),
+nicheSlug: (product.niche || "general").trim().toLowerCase(),
+locationSlug: (product.location || "south-africa").trim().toLowerCase()
+};
+});
+window.STASHSELL_PRODUCTS = PRODUCTS;
+// Add this line to make it compatible with Hive Times marketplace
+window.STASHSELL_DATA = PRODUCTS;
+
+
+return PRODUCTS;
 }
 
 // 🛠️ Utility API - Available globally
@@ -302,5 +312,38 @@ fetchProducts().then(function() {
         }
     }
 });
+// Listen for products loaded from Google Sheets
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.STASHSELL_PRODUCTS && window.STASHSELL_PRODUCTS.length > 0) {
+        renderDynamicCategories();
+    } else {
+        document.addEventListener('stashsell:products:loaded', renderDynamicCategories);
+    }
+});
+
+function renderDynamicCategories() {
+    const products = window.STASHSELL_PRODUCTS || [];
+    const container = document.getElementById('dynamicCategoriesContainer');
+    const menuContainer = document.getElementById('dynamicMenuCategories');
+    
+    if (!products.length) return;
+    
+    // Group by category
+    const categories = {};
+    products.forEach(p => {
+        const slug = p.categorySlug || 'uncategorized';
+        if (!categories[slug]) categories[slug] = { slug, name: formatCategoryName(slug), icon: getCategoryIcon(slug), products: [] };
+        categories[slug].products.push(p);
+    });
+    
+    let sectionsHTML = '', menuHTML = '';
+    Object.values(categories).forEach(cat => {
+        sectionsHTML += `<section id="${cat.slug}"><h2 class="section-title"><i class="fas ${cat.icon}"></i>${cat.name}</h2><div class="products-grid">${cat.products.map(p => `<article class="product-card" onclick="openModal('${p.id}')"><div class="product-image-wrap"><img src="${p.image}" alt="${p.name}" loading="lazy">${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}</div><div class="product-info"><h3 class="product-name">${p.name}</h3><p class="product-description">${p.description}</p><div class="product-price">R${p.price.toFixed(2)}</div><button class="add-to-cart-btn" onclick="event.stopPropagation();openModal('${p.id}')"><i class="fas fa-eye"></i> View Details</button></div></article>`).join('')}</div></section>`;
+        menuHTML += `<div class="menu-item"><a href="#${cat.slug}" class="menu-link" onclick="scrollToSection('${cat.slug}')"><i class="fas ${cat.icon}"></i><span>${cat.name}</span></a></div>`;
+    });
+    
+    container.innerHTML = sectionsHTML;
+    menuContainer.innerHTML = menuHTML;
+}
 
 })();
