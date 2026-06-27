@@ -663,16 +663,18 @@
         }
 
         /* ===== SEARCH & FILTER BAR ===== */
+               /* ===== SEARCH & FILTER BAR (STICKY) ===== */
         .search-filter-bar {
-            position: sticky;
-            top: var(--header-height);
-            z-index: 900;
-            background: rgba(255, 255, 255, 0.95);
+            position: sticky; /* This makes it stick */
+            top: var(--header-height); /* Sticks exactly below your header */
+            z-index: 899; /* High enough to stay above products, but below the header (1000) */
+            background: rgba(255, 255, 255, 0.98); /* Slightly more opaque so content doesn't show through */
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             padding: clamp(0.75rem, 2vw, 1rem) 0;
             box-shadow: var(--shadow-md);
             border-bottom: 2px solid var(--light-gray);
+            transition: all 0.3s ease;
         }
 
         .search-filter-container {
@@ -3361,4 +3363,4 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 </body>
-</html>
+</html> 
