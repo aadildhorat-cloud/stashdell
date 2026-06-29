@@ -11,10 +11,10 @@ const CONFIG = {
     SHEETS_API_URL: "https://script.google.com/macros/s/AKfycbwyvlDBc9GhiiwmLxqiNHqUz3eCoWWyhzgHmc_HbKJ5jEFr2uqX2UV9tnyfe02nz3QMSw/exec?format=js",
     
     basePath: "",
-    imageDir: "/stashdell/images",
-    fallbackImage: "/stashdell/images/stashdell-logo.jpg",
+    imageDir: "/stashsell/images",
+    fallbackImage: "/stashsell/images/stashsell-logo.jpg",
     businessName: "Stashsell",
-    businessLogo: "/stashdell/images/stashdell-logo.jpg",
+    businessLogo: "/stashsell/images/stashsell-logo.jpg",
     
     resolveImage: function(src) {
         if (!src) return CONFIG.fallbackImage;
