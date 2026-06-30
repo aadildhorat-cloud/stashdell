@@ -8,7 +8,7 @@
 const CONFIG = {
     // ⚡ IMPORTANT: Replace the URL below with your ACTUAL deployed Apps Script URL
     // Example: "https://script.google.com/macros/s/AKfycbx.../exec?format=js"
-    SHEETS_API_URL: "https://script.google.com/macros/s/AKfycbwyvlDBc9GhiiwmLxqiNHqUz3eCoWWyhzgHmc_HbKJ5jEFr2uqX2UV9tnyfe02nz3QMSw/exec?format=js",
+    SHEETS_API_URL: "https://script.google.com/macros/s/AKfycby5ZS6Dr_3gfqqeHOYahtgTh3VkeRSOjrYqlZDM6gfQN_ztcaVFYoyY6ZA3_LgoG1zlRg/exec?format=js",
     
     basePath: "",
     imageDir: "/stashsell/images",
