@@ -6,16 +6,13 @@
 (function () {
 // 🎛️ CONFIGURATION
 const CONFIG = {
-    // ⚡ IMPORTANT: Replace the URL below with your ACTUAL deployed Apps Script URL
-    // Example: "https://script.google.com/macros/s/AKfycbx.../exec?format=js"
-    SHEETS_API_URL: "https://script.google.com/macros/s/AKfycby5ZS6Dr_3gfqqeHOYahtgTh3VkeRSOjrYqlZDM6gfQN_ztcaVFYoyY6ZA3_LgoG1zlRg/exec?format=js",
-    
+     SHEETS_API_URL: "https://script.google.com/macros/s/AKfycbwt8KaR2ksoXt52D6DWbBhq4UkXsKixOjyEZC-MFOjKmHHj1zBBjhrrfGprLQ0wiVKBXA/exec?format=js",
     basePath: "",
     imageDir: "/stashsell/images",
     fallbackImage: "/stashsell/images/stashsell-logo.jpg",
     businessName: "Stashsell",
     businessLogo: "/stashsell/images/stashsell-logo.jpg",
-    
+
     resolveImage: function(src) {
         if (!src) return CONFIG.fallbackImage;
         if (src.indexOf('http://') === 0 || src.indexOf('https://') === 0) return src;
